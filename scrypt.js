@@ -1,158 +1,110 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', sans-serif;
+// ===============================
+// FRASES DE DIA DAS MÃES 💖
+// ===============================
+const frases = [
+    "Mãe, seu amor é o que me dá força todos os dias 💗",
+    "Tudo o que sou hoje devo a você, mãe 🌸",
+    "Seu abraço é o lugar mais seguro do mundo 💞",
+    "Obrigado por nunca desistir de mim, mãe 💐",
+    "Seu amor é meu maior exemplo ❤️",
+    "Mãe, você é meu maior presente da vida 🎁",
+    "Nada no mundo se compara ao amor de uma mãe 💖",
+    "Seu cuidado e carinho moldaram quem eu sou 🌷",
+    "Mãe, sua força me inspira todos os dias 🌹",
+    "Eu te amo hoje e sempre, mãe 💕"
+];
+
+// ===============================
+// ELEMENTOS
+// ===============================
+const btn1 = document.getElementById("btn1");
+const btn2 = document.getElementById("btn2");
+const msgBox = document.getElementById("msgBox");
+const msgTitle = msgBox.querySelector("h3");
+const msgText = msgBox.querySelector("p");
+const card = document.querySelector(".card");
+
+// ===============================
+// CONTADOR DE DIAS (VISÍVEL NO CARD)
+// ===============================
+const nascimento = new Date(2008, 5, 7); // 07/06/2008
+const hoje = new Date();
+const diffTempo = hoje - nascimento;
+const diasVividos = Math.floor(diffTempo / (1000 * 60 * 60 * 24));
+
+// cria elemento do contador
+const contador = document.createElement("p");
+contador.style.marginTop = "10px";
+contador.style.fontSize = "0.9rem";
+contador.style.color = "#e75480";
+contador.style.fontWeight = "600";
+contador.innerText = `Desde 07/06/2008: ${diasVividos} dias de amor 💗`;
+
+card.appendChild(contador);
+
+// ===============================
+// BOTÃO 1 — FRASES
+// ===============================
+btn1.addEventListener("click", () => {
+    const fraseAleatoria = frases[Math.floor(Math.random() * frases.length)];
+    msgTitle.innerText = "Mensagem para você 💐";
+    msgText.innerText = fraseAleatoria;
+    msgBox.classList.add("active");
+});
+
+// ===============================
+// BOTÃO 2 — CONTADOR DETALHADO
+// ===============================
+btn2.addEventListener("click", () => {
+    msgTitle.innerText = "Uma vida ao seu lado 💖";
+    msgText.innerText =
+        `Desde o dia 07 de junho de 2008,
+        já se passaram ${diasVividos} dias.
+
+        E em todos eles, seu amor esteve comigo. 💗`;
+
+    msgBox.classList.add("active");
+});
+
+// ===============================
+// FECHAR MENSAGEM
+// ===============================
+function closeMsg() {
+    msgBox.classList.remove("active");
 }
 
-body {
-    min-height: 100vh;
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
+// ===============================
+// EFEITO DE CHUVA 🌸
+// ===============================
+const rain = document.getElementById("rain");
+
+for (let i = 0; i < 40; i++) {
+    const drop = document.createElement("span");
+    drop.style.left = Math.random() * 100 + "vw";
+    drop.style.animationDuration = (2 + Math.random() * 3) + "s";
+    drop.style.opacity = Math.random();
+    rain.appendChild(drop);
 }
 
-/* Efeito de chuva (fica suave e romântico) */
-.rain span {
-    position: absolute;
-    top: -20px;
-    width: 2px;
-    height: 20px;
-    background: rgba(255, 255, 255, 0.4);
-    animation: fall linear infinite;
+// ===============================
+// CARROSSEL COM 10 FOTOS 📸
+// ===============================
+const carousel = document.querySelector(".carousel");
+carousel.innerHTML = "";
+
+for (let i = 1; i <= 10; i++) {
+    const img = document.createElement("img");
+    img.src = `mae${i}.jpg`;
+    img.alt = `Momento especial ${i}`;
+    if (i === 1) img.classList.add("active");
+    carousel.appendChild(img);
 }
 
-@keyframes fall {
-    to {
-        transform: translateY(110vh);
-    }
-}
+const images = document.querySelectorAll(".carousel img");
+let index = 0;
 
-/* CARD PRINCIPAL */
-.card {
-    background: rgba(255, 255, 255, 0.95);
-    width: 340px;
-    padding: 20px;
-    border-radius: 22px;
-    text-align: center;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
-    animation: fadeIn 1.2s ease;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-/* CARROSSEL */
-.carousel {
-    position: relative;
-    width: 100%;
-    height: 220px;
-    overflow: hidden;
-    border-radius: 18px;
-    margin-bottom: 15px;
-}
-
-.carousel img {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 1s ease;
-}
-
-.carousel img.active {
-    opacity: 1;
-}
-
-/* TEXTOS */
-.card h2 {
-    color: #e75480;
-    margin-bottom: 6px;
-    font-size: 1.6rem;
-}
-
-.card p {
-    color: #555;
-    font-size: 0.95rem;
-    margin-bottom: 18px;
-}
-
-/* BOTÕES */
-.buttons {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-}
-
-.buttons button {
-    flex: 1;
-    padding: 10px;
-    border: none;
-    border-radius: 12px;
-    background: linear-gradient(135deg, #ff758c, #ff7eb3);
-    color: white;
-    font-size: 0.85rem;
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.buttons button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(255, 120, 160, 0.5);
-}
-
-/* CAIXA DE MENSAGEM */
-.message-box {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.9);
-    background: white;
-    width: 300px;
-    padding: 20px;
-    border-radius: 20px;
-    text-align: center;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-    opacity: 0;
-    pointer-events: none;
-    transition: 0.4s ease;
-    z-index: 10;
-}
-
-.message-box.active {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translate(-50%, -50%) scale(1);
-}
-
-.message-box h3 {
-    color: #e75480;
-    margin-bottom: 10px;
-}
-
-.message-box p {
-    font-size: 0.95rem;
-    color: #444;
-    margin-bottom: 15px;
-    line-height: 1.4;
-}
-
-.message-box button {
-    padding: 8px 18px;
-    border: none;
-    border-radius: 12px;
-    background: linear-gradient(135deg, #ff758c, #ff7eb3);
-    color: white;
-    cursor: pointer;
-}
+setInterval(() => {
+    images[index].classList.remove("active");
+    index = (index + 1) % images.length;
+    images[index].classList.add("active");
+}, 3000);
