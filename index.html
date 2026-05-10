@@ -3,32 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feliz Dia das Mães 💗</title>
+    <title>Feliz Dia das Mães 💖</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="rain" id="rain"></div>
-
 <div class="card">
+
     <div class="carousel">
-        <!-- As imagens serão controladas pelo JS -->
-        <img src="mae1.jpg" class="active" alt="Momento 1">
+        <img src="mae1.jpg" class="active">
+        <img src="mae2.jpg">
+        <img src="mae3.jpg">
+        <img src="mae4.jpg">
+        <img src="mae5.jpg">
+        <img src="mae6.jpg">
+        <img src="mae7.jpg">
+        <img src="mae8.jpg">
+        <img src="mae9.jpg">
+        <img src="mae10.jpg">
     </div>
 
-    <h2>Mãe 💖</h2>
-    <p>Um pequeno presente feito com muito amor</p>
+    <h2>Mamãe 💖</h2>
+    <p id="daysCounter"></p>
 
     <div class="buttons">
-        <button id="btn1">Mensagens 💐</button>
-        <button id="btn2">Nossa história 💗</button>
+        <button id="btn1">Mensagem 💌</button>
+        <button id="btn2">Quando estiver triste</button>
     </div>
 </div>
 
 <div class="message-box" id="msgBox">
-    <h3>Para você, mãe 💖</h3>
-    <p>Você é meu maior exemplo de amor, força e cuidado.</p>
-    <button onclick="closeMsg()">Fechar</button>
+    <div class="msg-content">
+        <h3 id="msgTitle"></h3>
+        <p id="msgText"></p>
+        <button onclick="closeMsg()">Fechar</button>
+    </div>
 </div>
 
 <script src="script.js"></script>
