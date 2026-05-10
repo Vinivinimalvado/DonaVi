@@ -15,53 +15,40 @@ const frases = [
 ];
 
 // ===============================
-// ELEMENTOS
+// ELEMENTOS DO HTML (SEM ALTERAR)
 // ===============================
 const btn1 = document.getElementById("btn1");
 const btn2 = document.getElementById("btn2");
 const msgBox = document.getElementById("msgBox");
 const msgTitle = msgBox.querySelector("h3");
 const msgText = msgBox.querySelector("p");
-const card = document.querySelector(".card");
 
 // ===============================
-// CONTADOR DE DIAS (VISÍVEL NO CARD)
-// ===============================
-const nascimento = new Date(2008, 5, 7); // 07/06/2008
-const hoje = new Date();
-const diffTempo = hoje - nascimento;
-const diasVividos = Math.floor(diffTempo / (1000 * 60 * 60 * 24));
-
-// cria elemento do contador
-const contador = document.createElement("p");
-contador.style.marginTop = "10px";
-contador.style.fontSize = "0.9rem";
-contador.style.color = "#e75480";
-contador.style.fontWeight = "600";
-contador.innerText = `Desde 07/06/2008: ${diasVividos} dias de amor 💗`;
-
-card.appendChild(contador);
-
-// ===============================
-// BOTÃO 1 — FRASES
+// BOTÃO 1 — MENSAGENS
 // ===============================
 btn1.addEventListener("click", () => {
-    const fraseAleatoria = frases[Math.floor(Math.random() * frases.length)];
-    msgTitle.innerText = "Mensagem para você 💐";
-    msgText.innerText = fraseAleatoria;
+    const frase = frases[Math.floor(Math.random() * frases.length)];
+    msgTitle.innerText = "Para você, mãe 💖";
+    msgText.innerText = frase;
     msgBox.classList.add("active");
 });
 
 // ===============================
-// BOTÃO 2 — CONTADOR DETALHADO
+// BOTÃO 2 — CONTADOR DE DIAS 🎂
 // ===============================
 btn2.addEventListener("click", () => {
-    msgTitle.innerText = "Uma vida ao seu lado 💖";
+    const nascimento = new Date(2008, 5, 7); // 07 de junho de 2008
+    const hoje = new Date();
+
+    const diff = hoje - nascimento;
+    const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+    msgTitle.innerText = "Uma vida ao seu lado 💗";
     msgText.innerText =
         `Desde o dia 07 de junho de 2008,
-        já se passaram ${diasVividos} dias.
+        já se passaram ${dias} dias.
 
-        E em todos eles, seu amor esteve comigo. 💗`;
+        E em todos eles, seu amor esteve comigo. 💐`;
 
     msgBox.classList.add("active");
 });
@@ -87,15 +74,18 @@ for (let i = 0; i < 40; i++) {
 }
 
 // ===============================
-// CARROSSEL COM 10 FOTOS 📸
+// CARROSSEL — 10 FOTOS (mae1.jpg → mae10.jpg)
 // ===============================
 const carousel = document.querySelector(".carousel");
+
+// remove as imagens antigas do HTML
 carousel.innerHTML = "";
 
+// cria 10 imagens automaticamente
 for (let i = 1; i <= 10; i++) {
     const img = document.createElement("img");
     img.src = `mae${i}.jpg`;
-    img.alt = `Momento especial ${i}`;
+    img.alt = `Momento ${i}`;
     if (i === 1) img.classList.add("active");
     carousel.appendChild(img);
 }
